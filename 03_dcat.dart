@@ -5,15 +5,16 @@ import 'package:args/args.dart';
 
 const lineNumber = 'line-number';
 
-void main(List<String> args) {
-  exitCode = 0;
+void main(List<String> arguments) {
+  exitCode = 0; // presume success
   final parser = ArgParser()..addFlag(lineNumber, negatable: false, abbr: 'n');
 
-  ArgResults argResults = parser.parse(args);
 
-  final paths = argResults.rest; 
+  ArgResults argResults = parser.parse(arguments);
+  final paths = argResults.rest;
 
   dcat(paths, showLineNumbers: argResults[lineNumber] as bool);
+
 }
 
 Future<void> dcat(List<String> paths, {bool showLineNumbers = false}) async {
